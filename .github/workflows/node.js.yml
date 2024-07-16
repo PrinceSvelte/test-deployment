@@ -65,10 +65,9 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: test # this job depends on "test" having finished
-    if: github.ref == 'refs/heads/master' # we tell Github to only execute this step if we're on our master branch (so we don't put unfinished branches in production)
+    if: github.ref == 'refs/heads/master' # we tell GitHub to only execute this step if we're on our master branch (so we don't put unfinished branches in production)
     steps:
       - name: Deploying to Local Server
-        run: echo "$secrets.HOST"
         uses: appleboy/ssh-action@master # An action made to control Linux servers
         with: # We set all our secrets here for the action, these won't be shown in the action logs
           host: ${{ secrets.HOST }}
@@ -76,11 +75,11 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           port: ${{ secrets.PORT }}
           script: |
-            echo "Your total is $secrets.HOST"
-            echo "Your total is $secrets.USERNAME"
-            echo "Your total is $secrets.PASSWORD"
+            echo "Host: ${{ secrets.HOST }}"
+            echo "Username: ${{ secrets.USERNAME }}"
+            echo "Password: ${{ secrets.PASSWORD }}"
             cd /home/ibis/test-deployment # we move into our app's folder
             npm prune # we remove any unused dependencies
             npm install # we install any missing dependencies
             npm run build # we build our app
-            echo 'Your total'
+            echo 'Deployment complete'
