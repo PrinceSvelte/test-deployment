@@ -71,8 +71,8 @@ jobs:
         uses: appleboy/ssh-action@master # An action made to control Linux servers
         with: # We set all our secrets here for the action, these won't be shown in the action logs
           host: 192.168.15.24
-          username: ibis
-          password: ibis
+          username: "ibis"
+          password: "ibis"
           port: 22
           script: |
             cd /home/ibis/test-deployment # we move into our app's folder
