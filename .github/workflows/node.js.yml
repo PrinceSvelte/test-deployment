@@ -70,7 +70,7 @@ jobs:
       - name: Deploying to Local Server
         uses: appleboy/ssh-action@v1.0.3 # An action made to control Linux servers
         with: # We set all our secrets here for the action, these won't be shown in the action logs
-          host: 3.110.212.28
+          host: ec2-15-206-7-176.ap-south-1.compute.amazonaws.com
           username: "dev@sveltetech.com"
           password: "SvelteTech@1812"
           port: 22
