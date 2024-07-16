@@ -1,0 +1,22 @@
+name: remote ssh command
+on:
+  push:
+    branches: [master]
+jobs:
+  build:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          port: ${{ secrets.PORT }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          script: |
+            cd /home/ibis/test-deployment
+            git pull master
+            npm install
+            npm run build
+            pm2 restart 2
