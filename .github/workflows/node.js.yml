@@ -75,9 +75,4 @@ jobs:
           password: "ibis"
           port: 22
           script: |
-            cd /home/ibis/test-deployment # we move into our app's folder
-            git pull origin master # we pull any changes from git
-            npm prune # we remove any unused dependencies
-            npm install # we install any missing dependencies
-            npm run build # we build our app
-            pm2 restart 2
+           echo "12"
