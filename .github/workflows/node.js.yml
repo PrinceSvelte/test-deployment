@@ -1,20 +1,56 @@
-name: remote ssh command
+# name: remote ssh command
+# on:
+#   push:
+#     branches: [master]
+# jobs:
+#   build:
+#     name: Deploy
+#     runs-on: ubuntu-latest
+#     steps:
+#          - uses: actions/checkout@v2
+#          - name: Use Node.js 20.x to Build
+#            uses: actions/setup-node@v2
+#       with:
+#         node-version: 20.x
+#         -name: ssh deploy on Server
+#         uses: easingthemes/ssh-deploy@v2.1.4
+#         with:
+#           host: ${{ secrets.HOST }}
+#           port: ${{ secrets.PORT }}
+#           username: ${{ secrets.USERNAME }}
+#           password: ${{ secrets.PASSWORD }}
+#           script: |
+#             cd /home/ibis/test-deployment
+#             git pull master
+#             npm install
+#             npm run build
+#             pm2 restart 2
+
+#FRONTEND 
+name: Build React Files & Deploy to Ubuntu server
+
 on:
   push:
-    branches: [master]
+    branches: [ prod ]
+  pull_request:
+    branches: [ prod ]
+
 jobs:
-  build:
-    name: Deploy
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-         - uses: actions/checkout@v2
-         - name: Use Node.js 20.x to Build
-           uses: actions/setup-node@v2
+    - uses: actions/checkout@v2
+    - name: Use Node.js 20.x to Build
+      uses: actions/setup-node@v2
       with:
         node-version: 20.x
-        -name: ssh deploy on Server
-        uses: easingthemes/ssh-deploy@v2.1.4
-        with:
+        #cache: 'npm'
+    - run: npm install
+    - run: REACT_APP_STAGE=production
+    - run: CI=false npm run build
+    - name: ssh deploy on server
+      uses: easingthemes/ssh-deploy@v2.1.4
+      with:
           host: ${{ secrets.HOST }}
           port: ${{ secrets.PORT }}
           username: ${{ secrets.USERNAME }}
