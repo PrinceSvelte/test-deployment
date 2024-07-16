@@ -73,7 +73,7 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
-          port: ${{ secrets.PORT }}
+          port: ${{ secrets.APP_PORT }}
           script: |
             cd /home/ibis/test-deployment # we move into our app's folder
             git pull origin master # we pull any changes from git
