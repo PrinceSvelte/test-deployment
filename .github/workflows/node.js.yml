@@ -75,6 +75,9 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           port: ${{ secrets.PORT }}
           script: |
+            echo "Your total is \${$secrets.HOST}"
+            echo "Your total is \${$secrets.USERNAME}"
+            echo "Your total is \${$secrets.PASSWORD}"
             cd /home/ibis/test-deployment # we move into our app's folder
             npm prune # we remove any unused dependencies
             npm install # we install any missing dependencies
