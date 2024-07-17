@@ -79,4 +79,4 @@ jobs:
              git pull origin master # we pull any changes from git
              npm install # we install any missing dependencies
              npm run build # we build our app
-             pm2 restart 4
+             pm2 restart 1
