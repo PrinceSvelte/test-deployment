@@ -70,9 +70,9 @@ jobs:
       - name: Deploying to Local Server
         uses: appleboy/ssh-action@master # An action made to control Linux servers
         with: # We set all our secrets here for the action, these won't be shown in the action logs
-          host: 15.206.7.176
-          username: ubuntu
-          key: ${{ secrets.SSH_KEY }}  
+          host: ${{ secrets.GOURALIFE_HOST }} 
+          username: ${{ secrets.GOURALIFE_USERNAME }} 
+          key: ${{ secrets.GOURALIFE_SSH_KEY }}  
           port: 22       
           script: |
              cd /home/ubuntu/test-deployment # we move into our app's folder
