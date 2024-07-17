@@ -7,7 +7,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Here ATUL uploading the changes on Master
+          Here ATUL Lodu uploading the changes on Master
         </p>
         <a
           className="App-link"
